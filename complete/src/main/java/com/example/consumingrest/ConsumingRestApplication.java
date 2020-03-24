@@ -8,8 +8,11 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 @SpringBootApplication
+@RestController
 public class ConsumingRestApplication {
 
 	private static final Logger log = LoggerFactory.getLogger(ConsumingRestApplication.class);
@@ -18,6 +21,11 @@ public class ConsumingRestApplication {
 		SpringApplication.run(ConsumingRestApplication.class, args);
 	}
 
+@RequestMapping(value = "/")
+	   public String hello() {
+	      return "<h1>Hello World</h1>";
+	   }
+	   
 	@Bean
 	public RestTemplate restTemplate(RestTemplateBuilder builder) {
 		return builder.build();
